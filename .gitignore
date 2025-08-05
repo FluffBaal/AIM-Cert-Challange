@@ -127,10 +127,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Output and Generated Files
-outputs/
-output/
-results/
+# Output and Generated Files (but keep evaluation results)
+# outputs/  # Commented out - we want to keep evaluation outputs
+# output/   # Commented out - we want to keep evaluation output
+# results/  # Commented out - we want to keep evaluation results
 *.pkl
 *.pickle
 *.h5
@@ -153,12 +153,16 @@ storage/
 dump.rdb
 
 # Project Specific
-the_gold/  # Keep evaluation dataset
+# the_gold/  # Keep evaluation dataset - commented out to include it
 !data/output.md  # Keep the book data
 Task\ \ \(4\)/frontend/dist/
-Task\ \ \(5\)/ragas-evaluation/outputs/
-Task\ \ \(5\)/ragas-evaluation/results/
-Task\ \ \(6\)/test_results/
+# Task\ \ \(5\)/ragas-evaluation/outputs/  # Keep evaluation outputs
+# Task\ \ \(5\)/ragas-evaluation/results/  # Keep evaluation results
+# Task\ \ \(6\)/test_results/  # Keep test results
+
+# Backup folders
+BCK/
+**/BCK/
 
 # MacOS
 .AppleDouble

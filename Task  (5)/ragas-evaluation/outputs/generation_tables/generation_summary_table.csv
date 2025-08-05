@@ -1,0 +1,9 @@
+retriever,generation_score,answer_relevancy,faithfulness,semantic_similarity,latency
+Ensemble,0.959,0.939,0.996,0.942,7.94
+Naive Retrieval,0.954,0.945,0.983,0.935,7.013
+Multi-Query,0.953,0.946,0.98,0.935,9.305
+Parent Document,0.947,0.942,0.96,0.939,5.181
+BM25,0.946,0.934,0.966,0.939,5.788
+Contextual Compression,0.945,0.943,0.958,0.933,8.418
+Semantic Chunking,0.91,0.861,0.927,0.941,5.132
+Parent-Child Advanced,0.864,0.956,0.707,0.928,6.193
