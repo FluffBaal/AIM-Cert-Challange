@@ -22,7 +22,7 @@ AIM Cert Challenge/
 ├── Task  (5)/          # Performance analysis
 ├── Task  (6)/          # Retrieval techniques comparison
 ├── Task  (7)/          # Future directions
-└── Final Submission/   # Project index and overview
+└── Final Submission/   # Project index and overview and Loom link
 ```
 
 ## 🚀 Quick Start

@@ -1,5 +1,7 @@
 # AIM Certificate Challenge - Project Index
 
+## LOOM VID: https://www.loom.com/share/7d2d5c39b4a241cd9b354ed72336b3b0?sid=972f3dd9-d387-4a4d-9603-055a08f88e01
+
 ## Project Overview
 
 This repository contains my complete submission for the AIM Certificate Challenge, showcasing the development of an advanced RAG (Retrieval-Augmented Generation) system focused on negotiation assistance based on Chris Voss's "Never Split the Difference."
