@@ -1,0 +1,111 @@
+version: '3.8'
+
+services:
+  # Frontend Container
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://api:8000
+    depends_on:
+      - api
+    networks:
+      - app-network
+
+  # API Gateway
+  api:
+    build: 
+      context: ./backend
+      dockerfile: ./api/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}  # Optional for monitoring
+      - REDIS_URL=redis://redis:6379
+      - EXA_API_KEY=${EXA_API_KEY}  # Optional for fallback when not provided via headers
+      # Note: API keys can be passed via request headers from users or environment variables
+    depends_on:
+      - qdrant
+      - redis
+    networks:
+      - app-network
+    volumes:
+      - ./backend/api:/app/api
+      - ./backend/agents:/app/agents
+      - ./backend/ingestion:/app/ingestion
+      - agent-state:/app/state
+
+  # Vector Database (hosts dual collections)
+  qdrant:
+    image: qdrant/qdrant:latest
+    ports:
+      - "6333:6333"
+      - "6334:6334"  # Web UI
+    volumes:
+      - qdrant-storage:/qdrant/storage
+    networks:
+      - app-network
+    environment:
+      # Increased resources for dual collections
+      - QDRANT__SERVICE__GRPC_PORT=6334
+      - QDRANT__STORAGE__STORAGE_PATH=/qdrant/storage
+
+  # Redis for caching and state
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - app-network
+
+  # Data Ingestion Service (dual ingestion)
+  ingestion:
+    build: ./backend/ingestion
+    environment:
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - INGESTION_MODE=dual  # Process both naive and advanced
+    volumes:
+      - ./data:/data
+      - ./backend/ingestion:/app
+    networks:
+      - app-network
+    command: ["python", "ingest.py", "--dual-mode"]
+
+  # Ragas Evaluation Service
+  ragas:
+    build: ./backend/evaluation
+    ports:
+      - "8001:8001"
+    environment:
+      - LANGSMITH_API_KEY=${LANGSMITH_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+      - EVALUATION_MODE=continuous  # continuous or batch
+    depends_on:
+      - qdrant
+      - api
+    networks:
+      - app-network
+    volumes:
+      - ./backend/evaluation:/app
+      - ./data/evaluation_results:/results
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  qdrant-storage:
+    driver: local
+    # Increased storage for dual collections
+  redis-data:
+  agent-state:
+  evaluation-results:

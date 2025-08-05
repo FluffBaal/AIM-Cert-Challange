@@ -1,0 +1,6 @@
+
+use multiple sub-agents at the same time to speed up the creation process and research process: today we want to build an evaluation pipeline using ragas, look at this notebook here: /home/fluff_baal/repos/AIM Cert Challange/Task  (5)/Advanced_Retrieval_with_LangChain_Assignment.ipynb    we want to build this    │
+as a proper codebase with uv as the dependancy managemer, the data we will be evaluating over is this: /home/fluff_baal/repos/AIM Cert Challange/Task  (5)/data/Never split the diff clean.pdf    we should be able to just 
+reuse most of the existing code. The outputs we want are as follows: diagrams with sorted data that illustrate the best methods to use based on the ones we tested. tables showing all the tested parameters and how   
+they compare to eachother witrh a clear winner, a human readable copy of the "Golden Test Data Set" the golden test set only needs to be created once as it is expensive to make. A copy of the human readable verion will need to be placed in its own folder called "the_gold" please read all up to date          
+documentation so that we are using the latest versions possible to make this project a reality. we will be using gpt-4.1-mini (this is a 2025 model check the documentation online)

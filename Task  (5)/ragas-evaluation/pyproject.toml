@@ -1,0 +1,42 @@
+[project]
+name = "ragas-evaluation"
+version = "0.1.0"
+description = "RAGAS evaluation pipeline for retrieval methods comparison"
+readme = "README.md"
+authors = [
+    { name = "FluffBaal", email = "fluffbaal@example.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "ragas>=0.2.0",
+    "langchain>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "langchain-community>=0.3.0",
+    "langchain-qdrant>=0.2.0",
+    "qdrant-client>=1.12.0",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "matplotlib>=3.8.0",
+    "seaborn>=0.13.0",
+    "plotly>=5.24.0",
+    "pypdf>=5.1.0",
+    "python-dotenv>=1.0.0",
+    "tqdm>=4.66.0",
+    "tabulate>=0.9.0",
+    "rich>=13.9.0",
+    "langchain-experimental>=0.3.0",
+    "kaleido>=0.2.1",
+    "rank-bm25>=0.2.2",
+    "rapidfuzz>=3.0.0",
+    "langchain-cohere>=0.4.5",
+]
+
+[project.optional-dependencies]
+cohere = ["langchain-cohere>=0.3.0"]
+
+[project.scripts]
+ragas-evaluation = "ragas_evaluation:main"
+
+[build-system]
+requires = ["uv_build>=0.8.4,<0.9.0"]
+build-backend = "uv_build"

@@ -1,0 +1,46 @@
+[project]
+name = "freelancer-negotiation-helper"
+version = "1.0.0"
+description = "A real-time negotiation assistance tool for freelancers"
+readme = "README.md"
+requires-python = ">=3.11"
+
+[tool.uv.workspace]
+members = [
+    "backend/api",
+    "backend/ingestion", 
+    "backend/evaluation"
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "ruff>=0.0.287",
+    "mypy>=1.5.0",
+    "pre-commit>=3.3.3",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py311']
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = []
