@@ -111,7 +111,6 @@ An innovative feature that retrieves adjacent document sections when high simila
 For detailed documentation, see:
 - [Project Overview and Index](Final%20Submission/Final.md)
 - [Implementation Details](Task%20%20(4)/README.md)
-- [Parent-Child Architecture Guide](Task%20%20(4)/PARENT_CHILD_CHUNKING_IMPLEMENTATION_GUIDE.md)
 - [Performance Analysis](Task%20%20(5)/Task_05.md)
 
 ## 🎓 Key Learnings
